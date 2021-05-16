@@ -5,7 +5,6 @@ public class Problem10 {
         String str = "cdfe";
         System.out.println(sortAndFindChar(str, 'e'));
     }
-
     public static int sortAndFindChar(String str, char ch) {
         char[] arr = str.toCharArray();
         for (int i = 0; i < arr.length; i++) {

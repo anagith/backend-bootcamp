@@ -14,6 +14,7 @@ public class Problem13 {
 
     }
 
+
     public static int[] init(int size) {
         int[] arr = new int[size];
         Random random = new Random();

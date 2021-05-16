@@ -23,7 +23,6 @@ public class Problem11 {
             }
         }
     }
-
     public static int guessNumber(int left, int right) {
         return (left + right) / 2;
     }

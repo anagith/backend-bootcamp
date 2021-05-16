@@ -10,6 +10,7 @@ public class Problem6 {
         System.out.println("max value is " + selectionSort(arr)[arr.length - 1]);
     }
 
+
     public static int[] selectionSort(int[] arr) {
         int min;
         int index;

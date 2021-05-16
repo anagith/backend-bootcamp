@@ -30,4 +30,5 @@ public class Problem4 {
         }
         System.out.println();
     }
+
 }

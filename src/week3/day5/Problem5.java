@@ -15,6 +15,7 @@ public class Problem5 {
         System.out.println(result);
     }
 
+
     public static int binarySearch(int[] arr, int left, int right, int key) {
         while (left <= right) {
             int middle = (left + right) / 2;

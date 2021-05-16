@@ -12,7 +12,6 @@ public class Problem2 {
         bubbleSortRecursion(arr, size);
         print(arr);
     }
-
     public static int[] init(int size) {
         int[] arr = new int[size];
         Random random = new Random();
