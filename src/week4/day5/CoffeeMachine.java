@@ -1,9 +1,10 @@
 package week4.day5;
 
+import week4.day5.factory.AbstractFactory;
+import week4.day5.factory.FactoryCreator;
 import week4.day5.models.*;
 
 public class CoffeeMachine {
-
 
     public Cup getProduct(Command command) {
         return initializeProduct(command);
@@ -21,9 +22,11 @@ public class CoffeeMachine {
 
     private Drink makeDrink(Command command) {
         if (DrinkType.TEA == command.getDrinkType()) {
-            return new Tea();
+            AbstractFactory teaFactory = FactoryCreator.getFactory("tea");
+            return teaFactory.getTea(command);
         }
-        return new Coffee();
+        AbstractFactory coffeeFactory = FactoryCreator.getFactory("coffee");
+        return coffeeFactory.getCoffee(command);
     }
 
     private boolean checkStick(Command command) {

@@ -1,8 +1,8 @@
 package week4.day5;
 
+import week4.day5.models.DrinkType;
+
 public class Command {
-
-
     private DrinkType drinkType;
     private int sugarCount;
 
