@@ -1,75 +1,103 @@
 package week5.day1;
 
-import week5.day1.models.Archer;
-import week5.day1.models.Mage;
-import week5.day1.models.Soldier;
-import week5.day1.models.SwordsMan;
+import week5.day1.models.*;
 
 import java.util.Random;
 
 public class Battle {
-    Soldier firstSoldier;
-    Soldier secondSoldier;
-    Random random = new Random();
+    Warrior firstWarrior;
+    Warrior secondWarrior;
 
-    public Battle initSoldiers(int a) {
-        if (a == 1) {
-            this.firstSoldier = new SwordsMan();
-            System.out.println("you're a swordsman");
-        } else if (a == 2) {
-            this.firstSoldier = new Archer();
-            System.out.println("you're a archer");
-        } else if (a == 3) {
-            this.firstSoldier = new Mage();
-            System.out.println("you're a mage");
-        }
-        Random random = new Random();
-        int b = random.nextInt(3);
-        switch (b) {
-            case 0: {
-                this.secondSoldier = new SwordsMan();
-                System.out.println("your enemy is a swordsman "+"\n");
-                break;
-            }
-            case 1: {
-                this.secondSoldier = new Archer();
-                System.out.println("your enemy is an archer"+"\n");
-                break;
-            }
-            case 2: {
-                this.secondSoldier = new Mage();
-                System.out.println("your enemy is a mage"+"\n");
-                break;
-            }
-        }
-        return this;
-    }
 
     public Battle(int a) {
         Battle battle = initSoldiers(a);
         beginBattle(battle);
     }
 
-    public void beginBattle(Battle battle) {
-        while (battle.firstSoldier.getHealthPool() > 0 && battle.secondSoldier.getHealthPool() > 0) {
+    public Battle initSoldiers(int a) {
+        if (a == 1) {
+            this.firstWarrior = new SwordsMan();
+            System.out.println("you're a swordsman");
+        } else if (a == 2) {
+            this.firstWarrior = new Archer();
+            System.out.println("you're an archer");
+        } else if (a == 3) {
+            this.firstWarrior = new Mage();
+            System.out.println("you're a mage");
+        }
+        chooseEnemy();
+        return this;
+    }
 
-            if (battle.firstSoldier.getHealthPool() > 0) {
-                int firstHit = random.nextInt(100);
-                System.out.println("you  hit " + firstHit);
-                secondSoldier.setHealthPool(secondSoldier.getHealthPool() - firstHit * firstSoldier.getDefence() / 100);
-                System.out.println("his healthPool " + secondSoldier.getHealthPool());
+    private void chooseEnemy() {
+        Random random = new Random();
+        int b = random.nextInt(3);
+        switch (b) {
+            case 0: {
+                this.secondWarrior = new SwordsMan();
+                System.out.println("your opponent is a swordsman " + "\n");
+                break;
             }
-            if (battle.secondSoldier.getHealthPool() > 0) {
-                int secondHit = random.nextInt(100);
-                System.out.println("he  hit " + secondHit);
-                firstSoldier.setHealthPool(firstSoldier.getHealthPool() - secondHit * secondSoldier.getDefence() / 100);
-                System.out.println("your healthPool " + firstSoldier.getHealthPool());
+            case 1: {
+                this.secondWarrior = new Archer();
+                System.out.println("your opponent is an archer" + "\n");
+                break;
+            }
+            case 2: {
+                this.secondWarrior = new Mage();
+                System.out.println("your opponent is a mage" + "\n");
+                break;
             }
         }
-        if (firstSoldier.getHealthPool() > 0) {
+    }
+
+    public void beginBattle(Battle battle) {
+        int playerDice = throwDice();
+        int opponentDice = throwDice();
+        System.out.println("player's dice " + playerDice);
+        System.out.println("opponent's dice " + opponentDice);
+        System.out.println();
+        if (playerDice >= opponentDice) {
+            startWith(battle, firstWarrior, secondWarrior);
+        } else {
+            startWith(battle, secondWarrior, firstWarrior);
+        }
+        checkWinner();
+    }
+
+    private int throwDice() {
+        return Dice.throwDice() + 1;
+    }
+
+    private void startWith(Battle battle, Warrior firstWarrior, Warrior secondWarrior) {
+        while (battle.firstWarrior.getHealthPool() > 0 && battle.secondWarrior.getHealthPool() > 0) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (battle.firstWarrior.getHealthPool() < 0 || secondWarrior.getHealthPool() < 0) {
+                break;
+            }
+            System.out.println(battle.secondWarrior.getName() + "'s healthPool " + secondWarrior.getHealthPool());
+            firstWarrior.attack(secondWarrior);
+            System.out.println(battle.secondWarrior.getName() + "'s healthPool " + secondWarrior.getHealthPool());
+            System.out.println();
+            if (battle.secondWarrior.getHealthPool() < 0 || firstWarrior.getHealthPool() < 0) {
+                break;
+            }
+            System.out.println(battle.firstWarrior.getName() + "'s healthPool " + firstWarrior.getHealthPool());
+            secondWarrior.attack(firstWarrior);
+            System.out.println(battle.firstWarrior.getName() + "'s healthPool " + firstWarrior.getHealthPool());
+            System.out.println();
+        }
+    }
+
+    private void checkWinner() {
+        if (firstWarrior.getHealthPool() > 0) {
             System.out.println("you won");
         } else {
-            System.out.println("he won");
+            System.out.println("opponent won");
         }
     }
 }

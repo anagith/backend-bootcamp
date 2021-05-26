@@ -1,23 +1,25 @@
 package week5.day1.models;
 
-public class Archer extends Soldier {
+public class Archer extends Warrior {
+    private Shield shield = new BlockingShield();
+    private final String name="Archer";
     public Archer() {
-        this.defence=20;
-        this.healthPool=100;
-    }
-    public int getHealthPool() {
-        return healthPool;
+        this.setHealthPool(100);
+        this.setDefence(shield);
+        this.setDamage(30);
     }
 
-    public void setHealthPool(int healthPool) {
-        this.healthPool = healthPool;
+    public String getName() {
+        return name;
     }
 
-    public int getDefence() {
-        return defence;
+    public Shield getDefence() {
+        return this.shield;
     }
 
-    public void setDefence(int defence) {
-        this.defence = defence;
+    public void setShield(BlockingShield shield) {
+        this.shield = shield;
     }
+
+
 }
