@@ -1,5 +1,6 @@
 package week5.day3;
 
+import week5.day3.exception.WrongQuantityException;
 import week5.day3.models.Product;
 
 public class Queue {
@@ -42,10 +43,9 @@ public class Queue {
         return product;
     }
 
-    public Product[] pop(int n) {
+    public Product[] pop(int n) throws WrongQuantityException {
         if (n >= size - 1) {
-            System.out.println("not enough");
-            return null;
+            throw new WrongQuantityException("Don't have enough product");
         }
         Product[] products = new Product[n];
         for (int i = 0; i < n; i++) {

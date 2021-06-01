@@ -2,6 +2,7 @@ package week5.day3;
 
 
 import week5.day3.enums.*;
+import week5.day3.exception.TypeMissMatchException;
 
 public class Command {
     private int quantity;
@@ -11,34 +12,41 @@ public class Command {
     private ChocolateType chocolateType;
     private SandwichType sandwichType;
 
-    public Command(String input) {
+    public Command(String input) throws TypeMissMatchException {
         String[] split = input.split(":");
         if (split[0].equals("A")) {
             this.productType = ProductType.DRINK;
             chooseDrink(split);
-        }
-        if (split[0].equals("B")) {
+        } else if (split[0].equals("B")) {
             this.productType = ProductType.CHIPS;
             chooseChips(split);
-        }
-        if (split[0].equals("C")) {
+        } else if (split[0].equals("C")) {
             this.productType = ProductType.CHOCOLATE;
             chooseChocolate(split);
-        }
-        if (split[0].equals("D")) {
+        } else if (split[0].equals("D")) {
             this.productType = ProductType.SANDWICH;
             chooseSandwich(split);
+        } else {
+            throw new TypeMissMatchException("Wrong Product Type");
         }
-        quantity = Integer.parseInt(split[2]);
+        try {
+            quantity = Integer.parseInt(split[2]);
+        } catch (NumberFormatException e) {
+            throw new TypeMissMatchException("Wrong product quantity");
+        }
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    private void chooseSandwich(String[] split) {
-        if (Integer.parseInt(split[1]) == 1) {
-            this.sandwichType = SandwichType.HAM;
+    private void chooseSandwich(String[] split) throws TypeMissMatchException {
+        try {
+            if (Integer.parseInt(split[1]) == 1) {
+                this.sandwichType = SandwichType.HAM;
+            }
+        } catch (NumberFormatException e) {
+            throw new TypeMissMatchException("Wrong product number");
         }
         if (Integer.parseInt(split[1]) == 2) {
             this.sandwichType = SandwichType.CHEESE;
@@ -51,9 +59,13 @@ public class Command {
         }
     }
 
-    private void chooseChocolate(String[] split) {
-        if (Integer.parseInt(split[1]) == 1) {
-            this.chocolateType = ChocolateType.KITKAT;
+    private void chooseChocolate(String[] split) throws TypeMissMatchException {
+        try {
+            if (Integer.parseInt(split[1]) == 1) {
+                this.chocolateType = ChocolateType.KITKAT;
+            }
+        } catch (NumberFormatException e) {
+            throw new TypeMissMatchException("Wrong product number");
         }
         if (Integer.parseInt(split[1]) == 2) {
             this.chocolateType = ChocolateType.SNICKERS;
@@ -66,9 +78,13 @@ public class Command {
         }
     }
 
-    private void chooseChips(String[] split) {
-        if (Integer.parseInt(split[1]) == 1) {
-            this.chipsType = ChipsType.LAYS;
+    private void chooseChips(String[] split) throws TypeMissMatchException {
+        try {
+            if (Integer.parseInt(split[1]) == 1) {
+                this.chipsType = ChipsType.LAYS;
+            }
+        } catch (NumberFormatException e) {
+            throw new TypeMissMatchException("Wrong product number");
         }
         if (Integer.parseInt(split[1]) == 2) {
             this.chipsType = ChipsType.DORITOS;
@@ -81,9 +97,13 @@ public class Command {
         }
     }
 
-    private void chooseDrink(String[] split) {
-        if (Integer.parseInt(split[1]) == 1) {
-            this.drinkType = DrinkType.COCA;
+    private void chooseDrink(String[] split) throws TypeMissMatchException {
+        try {
+            if (Integer.parseInt(split[1]) == 1) {
+                this.drinkType = DrinkType.COCA;
+            }
+        } catch (NumberFormatException e) {
+            throw new TypeMissMatchException("Wrong product number");
         }
         if (Integer.parseInt(split[1]) == 2) {
             this.drinkType = DrinkType.FANTA;

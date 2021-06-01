@@ -1,6 +1,7 @@
 package week5.day3;
 
 import week5.day3.enums.*;
+import week5.day3.exception.WrongQuantityException;
 import week5.day3.models.*;
 import week5.day3.utils.Result;
 import week5.day3.utils.VMTools;
@@ -27,17 +28,17 @@ public class VendingMachine {
     private Queue nutella = new Queue(new Nutella());
 
 
-    public Result getProduct(Command command) {
+    public Result getProduct(Command command) throws WrongQuantityException {
         return initProduct(command);
     }
 
-    private Result initProduct(Command command) {
+    private Result initProduct(Command command) throws WrongQuantityException {
         Result result = new Result();
         result.setProducts(getProducts(command));
         return result;
     }
 
-    private Product[] getProducts(Command command) {
+    private Product[] getProducts(Command command) throws WrongQuantityException {
         int quantity = command.getQuantity();
         Product[] products = new Product[quantity];
 
