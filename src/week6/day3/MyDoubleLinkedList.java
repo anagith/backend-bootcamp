@@ -7,6 +7,7 @@ public class MyDoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
+        checkIndex(index);
         Node<T> temp;
         if (index == 0) {
             return head.value;
@@ -72,7 +73,7 @@ public class MyDoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean remove(T obj) {
-        if (head.value.equals(obj)) {
+        if (head.value!=null && head.value.equals(obj) ) {
             head = head.next;
             head.previous = null;
             size--;
@@ -80,9 +81,9 @@ public class MyDoubleLinkedList<T> implements MyList<T> {
         }
         Node<T> temp = head;
         for (int i = 0; i < size - 1; i++) {
-            if (temp.next.value.equals(obj)) {
-                temp.next.previous = temp.previous;
-                temp.previous.next = temp.next;
+            if (temp.next.value!=null && temp.next.value.equals(obj)) {
+                temp.next.next.previous = temp;
+                temp.next = temp.next.next;
                 size--;
                 return true;
             }
@@ -99,8 +100,8 @@ public class MyDoubleLinkedList<T> implements MyList<T> {
     @Override
     public boolean contains(T obj) {
         Node<T> temp = head;
-        for (int i = 0; i < size - 1; i++) {
-            if (temp.value.equals(obj)) {
+        for (int i = 0; i < size ; i++) {
+            if (temp.value!=null && temp.value.equals(obj)) {
                 return true;
             }
             temp = temp.next;
