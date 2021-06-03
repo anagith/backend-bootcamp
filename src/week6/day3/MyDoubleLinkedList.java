@@ -73,7 +73,16 @@ public class MyDoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean remove(T obj) {
-        if (head.value!=null && head.value.equals(obj) ) {
+        if (obj == null) {
+            if (removeNull()) return true;
+        } else {
+            if (removeElement(obj)) return true;
+        }
+        return false;
+    }
+
+    private boolean removeElement(T obj) {
+        if (head.value != null && head.value.equals(obj)) {
             head = head.next;
             head.previous = null;
             size--;
@@ -81,7 +90,27 @@ public class MyDoubleLinkedList<T> implements MyList<T> {
         }
         Node<T> temp = head;
         for (int i = 0; i < size - 1; i++) {
-            if (temp.next.value!=null && temp.next.value.equals(obj)) {
+            if (temp.next.value != null && temp.next.value.equals(obj)) {
+                temp.next.next.previous = temp;
+                temp.next = temp.next.next;
+                size--;
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+    }
+
+    private boolean removeNull() {
+        if (head.value == null) {
+            head = head.next;
+            head.previous = null;
+            size--;
+            return true;
+        }
+        Node<T> temp = head;
+        for (int i = 0; i < size - 1; i++) {
+            if (temp.next.value == null) {
                 temp.next.next.previous = temp;
                 temp.next = temp.next.next;
                 size--;
@@ -100,8 +129,8 @@ public class MyDoubleLinkedList<T> implements MyList<T> {
     @Override
     public boolean contains(T obj) {
         Node<T> temp = head;
-        for (int i = 0; i < size ; i++) {
-            if (temp.value!=null && temp.value.equals(obj)) {
+        for (int i = 0; i < size; i++) {
+            if (temp.value != null && temp.value.equals(obj)) {
                 return true;
             }
             temp = temp.next;
