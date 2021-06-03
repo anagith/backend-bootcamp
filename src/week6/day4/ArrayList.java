@@ -63,7 +63,6 @@ public class ArrayList<T> {
                 break;
             }
         }
-        shorten();
 
         if (size < initialSize) {
             return true;
@@ -80,7 +79,6 @@ public class ArrayList<T> {
             array[i] = array[i + 1];
         }
         this.size--;
-        shorten();
         return removed;
     }
 
@@ -90,7 +88,6 @@ public class ArrayList<T> {
                 remove(toBeRemoved[i]);
             }
         }
-        shorten();
         return true;
     }
 
@@ -190,17 +187,10 @@ public class ArrayList<T> {
     }
 
     public void trimToSize() {
-        T[] trim = (T[]) new Object[size];
-        for (int i = 0; i < size; i++) {
-            trim[i] = array[i];
-        }
-        array = trim;
-        capacity = size;
-    }
-
-    private void shorten() {
-        if (size <= capacity / 4 && capacity > 5) {
-            capacity /= 2;
+        int difference=capacity-size;
+        for (int i=0;i<difference;i++)
+        {
+            remove(size-1);
         }
     }
 
