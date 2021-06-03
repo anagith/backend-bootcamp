@@ -8,6 +8,7 @@ public class LinkedList<T> implements MyList<T> {
     Node<T> tail;
     int size;
 
+
     @Override
     public T get(int index) {
         checkIndex(index);
