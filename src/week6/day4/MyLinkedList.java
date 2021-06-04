@@ -3,7 +3,7 @@ package week6.day4;
 import week6.day3.MyList;
 import week6.day3.Node;
 
-public class LinkedList<T> implements MyList<T> {
+public class MyLinkedList<T> implements MyList<T> {
     Node<T> head;
     Node<T> tail;
     int size;
@@ -187,14 +187,14 @@ public class LinkedList<T> implements MyList<T> {
         return false;
     }
 
-    public void join(LinkedList<T> other) {
+    public void join(MyLinkedList<T> other) {
         tail.next = other.head;
         other.head.previous = tail;
         tail = other.tail;
     }
 
-    public LinkedList<T> clone() {
-        LinkedList<T> clone = new LinkedList<>();
+    public MyLinkedList<T> clone() {
+        MyLinkedList<T> clone = new MyLinkedList<>();
         Node<T> temp = head;
         for (int i = 0; i < size; i++) {
             clone.add(temp.value);
@@ -218,7 +218,7 @@ public class LinkedList<T> implements MyList<T> {
         return arr;
     }
 
-    public boolean compare(LinkedList<T> other) {
+    public boolean compare(MyLinkedList<T> other) {
         if (this.size() != other.size()) {
             return false;
         } else {
