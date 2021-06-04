@@ -2,17 +2,17 @@ package week6.day4;
 
 import java.util.Arrays;
 
-public class ArrayList<T> {
+public class MyArrayList<T> {
     private int capacity;
     private int size;
     private final int DEFAULT_CAPACITY = 5;
     private T[] array;
 
-    public ArrayList() {
+    public MyArrayList() {
         init(DEFAULT_CAPACITY);
     }
 
-    public ArrayList(int capacity) {
+    public MyArrayList(int capacity) {
         init(capacity);
     }
 
@@ -122,7 +122,7 @@ public class ArrayList<T> {
         }
     }
 
-    public boolean compare(ArrayList<T> other) {
+    public boolean compare(MyArrayList<T> other) {
         if (other.getSize() != this.getSize()) {
             return false;
         }
@@ -134,14 +134,14 @@ public class ArrayList<T> {
         return true;
     }
 
-    public void join(ArrayList<T> other) {
+    public void join(MyArrayList<T> other) {
         for (int i = 0; i < other.getSize(); i++) {
             this.add(other.array[i]);
         }
     }
 
-    public ArrayList<T> clone() {
-        ArrayList<T> clone = new ArrayList<>();
+    public MyArrayList<T> clone() {
+        MyArrayList<T> clone = new MyArrayList<>();
         for (int i = 0; i < size; i++) {
             clone.add(array[i]);
         }
