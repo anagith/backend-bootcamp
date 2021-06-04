@@ -2,32 +2,32 @@ package week6.day4;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> integerArrayList = new ArrayList<>();
-        integerArrayList.add(1);
-        integerArrayList.add(2);
-        integerArrayList.add(3);
-        integerArrayList.add(4);
-        integerArrayList.add(5);
+        MyArrayList<Integer> integerMyArrayList = new MyArrayList<>();
+        integerMyArrayList.add(1);
+        integerMyArrayList.add(2);
+        integerMyArrayList.add(3);
+        integerMyArrayList.add(4);
+        integerMyArrayList.add(5);
 
-        ArrayList<Integer> integerArrayList1 = new ArrayList<>();
-        integerArrayList1.add(1);
-        integerArrayList1.add(2);
+        MyArrayList<Integer> integerMyArrayList1 = new MyArrayList<>();
+        integerMyArrayList1.add(1);
+        integerMyArrayList1.add(2);
         //integerArrayList.reverse();
         //integerArrayList.join(integerArrayList1);
         //System.out.println(integerArrayList.clone());
         //System.out.println(integerArrayList);
 
 
-        LinkedList<Integer> integerLinkedList = new LinkedList<>();
-        integerLinkedList.add(1);
-        integerLinkedList.add(2);
-        integerLinkedList.add(null);
-        integerLinkedList.add(4);
-        integerLinkedList.add(5);
-        integerLinkedList.add(6);
-        integerLinkedList.add(7);
-        integerLinkedList.add(8);
-        integerLinkedList.add(9);
+        MyLinkedList<Integer> integerMyLinkedList = new MyLinkedList<>();
+        integerMyLinkedList.add(1);
+        integerMyLinkedList.add(2);
+        integerMyLinkedList.add(null);
+        integerMyLinkedList.add(4);
+        integerMyLinkedList.add(5);
+        integerMyLinkedList.add(6);
+        integerMyLinkedList.add(7);
+        integerMyLinkedList.add(8);
+        integerMyLinkedList.add(9);
         //integerLinkedList.removeFirstAndLast();
         //integerLinkedList.clear();
         //integerLinkedList.remove(null);
@@ -42,8 +42,8 @@ public class Main {
         Node<Object> objectNode1 = new Node<>(null);
         System.out.println(objectNode1.equals(objectNode));*/
 
-        integerLinkedList.set(2, 56);
-        System.out.println(integerLinkedList);
+        integerMyLinkedList.set(2, 56);
+        System.out.println(integerMyLinkedList);
 
 
     }
