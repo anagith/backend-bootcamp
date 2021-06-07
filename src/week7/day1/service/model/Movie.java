@@ -7,6 +7,7 @@ public class Movie {
     private int ID;
     private String name;
     private Genre genre;
+    private Director director;
     private static int countId;
 
     public Movie() {

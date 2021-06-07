@@ -12,10 +12,4 @@ public class DataBase {
         return movies;
     }
 
-    @Override
-    public String toString() {
-        return "DataBase{" +
-                "movies=" + movies +
-                '}';
-    }
 }

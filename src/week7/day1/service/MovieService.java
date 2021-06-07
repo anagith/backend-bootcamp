@@ -1,6 +1,7 @@
 package week7.day1.service;
 
 import week7.day1.controller.model.MovieRequest;
+import week7.day1.controller.model.MovieResponseModel;
 import week7.day1.database.DataBase;
 import week7.day1.exception.DuplicateElementException;
 import week7.day1.service.model.Movie;
@@ -17,10 +18,7 @@ public class MovieService {
     }
 
     public Movie createMovie(MovieRequest request) {
-        Movie movie = new Movie();
-        movie.setGenre(request.getGenre());
-        movie.setName(request.getName());
-        movie.setID(calculateID());
+        Movie movie = new Movie(calculateID(), request.getName(), request.getGenre());
         if (!haveDuplicates(movie)) {
             dataBase.getMovies().add(movie);
             return movie;
@@ -29,7 +27,9 @@ public class MovieService {
     }
 
     public void getAllMovies() {
-        System.out.println(dataBase);
+        for (int i = 0; i < dataBase.getMovies().size(); i++) {
+            System.out.println(convert(dataBase.getMovies().get(i)));
+        }
     }
 
     public Movie getMovieById(int input) {
@@ -65,6 +65,10 @@ public class MovieService {
 
     private int calculateID() {
         return Movie.getCountId();
+    }
+
+    private MovieResponseModel convert(Movie movie) {
+        return new MovieResponseModel(movie.getName(), movie.getGenre());
     }
 
 }

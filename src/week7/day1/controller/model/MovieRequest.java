@@ -22,6 +22,10 @@ public class MovieRequest {
     public static Genre checkGenre(String input) {
         if (input.equalsIgnoreCase("horror")) {
             return Genre.HORROR;
+        } else if (input.equalsIgnoreCase("trailer")) {
+            return Genre.TRAILER;
+        } else if (input.equalsIgnoreCase("drama")) {
+            return Genre.DRAMA;
         }
         throw new IllegalGenreException();
     }
