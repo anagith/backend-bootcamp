@@ -100,7 +100,7 @@ public class MyHashMap<K, V> {
         buckets = newBuckets;
     }
 
-    public String arrayToString(Bucket[] buckets) {
+    private String arrayToString(Bucket[] buckets) {
         StringBuilder b = new StringBuilder();
         for (int i = 0; i < buckets.length; i++) {
             if (buckets[i] == null || buckets[i].getEntries().isEmpty()) {
