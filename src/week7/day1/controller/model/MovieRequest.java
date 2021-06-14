@@ -1,6 +1,7 @@
 package week7.day1.controller.model;
 
 import week7.day1.exception.IllegalGenreException;
+import week7.day1.exception.WrongInputException;
 import week7.day1.service.model.Genre;
 
 public class MovieRequest {
@@ -12,8 +13,11 @@ public class MovieRequest {
 
     }
 
-    public MovieRequest requestForCreation(String input) {
+    public MovieRequest requestForCreation(String input) throws WrongInputException {
         String[] split = input.split(":");
+        if(split.length<2){
+            throw new WrongInputException("Wrong input");
+        }
         setName(split[0]);
         setGenre(checkGenre(split[1]));
         return this;

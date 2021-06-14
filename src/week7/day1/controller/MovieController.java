@@ -2,6 +2,7 @@ package week7.day1.controller;
 
 import week7.day1.controller.model.MovieRequest;
 import week7.day1.exception.DoesntExistException;
+import week7.day1.exception.WrongInputException;
 import week7.day1.service.MovieService;
 import week7.day1.service.model.Movie;
 
@@ -25,7 +26,11 @@ public class MovieController {
             String choice = scanner.next();
             switch (choice) {
                 case "1":
-                    create(scanner);
+                    try {
+                        create(scanner);
+                    } catch (WrongInputException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case "2":
                     readAll();
@@ -80,7 +85,7 @@ public class MovieController {
         return scanner.nextInt();
     }
 
-    private void create(Scanner scanner) {
+    private void create(Scanner scanner) throws WrongInputException {
         String input = getNameAndGenre(scanner);
         System.out.println(createMovie(input));
     }
@@ -107,7 +112,7 @@ public class MovieController {
         movieService.getAllMovies();
     }
 
-    private Movie createMovie(String input) {
+    private Movie createMovie(String input) throws WrongInputException {
         MovieRequest movieRequest = new MovieRequest();
         return movieService.createMovie(movieRequest.requestForCreation(input));
     }
