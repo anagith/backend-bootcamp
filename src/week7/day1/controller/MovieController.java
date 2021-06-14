@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class MovieController {
 
+
     private MovieService movieService;
 
     private final static Scanner SCANNER = new Scanner(System.in);

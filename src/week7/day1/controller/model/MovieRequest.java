@@ -10,7 +10,6 @@ public class MovieRequest {
     private Genre genre;
 
     public MovieRequest() {
-
     }
 
     public MovieRequest requestForCreation(String input) throws WrongInputException {

@@ -3,6 +3,7 @@ package week7.day1.controller.model;
 import week7.day1.service.model.Genre;
 
 public class MovieResponseModel {
+
     private String name;
     private Genre genre;
 
