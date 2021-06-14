@@ -6,16 +6,22 @@ import week8.day1.utils.Result;
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller {
+
+    private static final Logger LOGGER = Logger.getLogger("Logger 1");
+
     public static void start() {
+        LOGGER.log(Level.INFO, "HELLOO THERE");
         Scanner scanner = new Scanner(System.in);
         VendingMachine vendingMachine = null;
         File file = new File("vendingMachine.txt");
         vendingMachine = getVendingMachine(vendingMachine, file);
 
         String input = scanner.next();
-        while (input != "4") {
+        while (!input.equals("4")) {
             try {
                 Command command = new Command(input);
                 Result result = vendingMachine.getProduct(command);
@@ -26,7 +32,7 @@ public class Controller {
                     out.writeObject(vendingMachine);
 
                 } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    LOGGER.log(Level.WARNING, "FILE NOT FOUND");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -48,9 +54,11 @@ public class Controller {
                 e.printStackTrace();
             }
         } else {
-            try (FileInputStream InputFile = new FileInputStream(file);
-                 ObjectInputStream in = new ObjectInputStream(InputFile)) {
-                vendingMachine = (VendingMachine) in.readObject();
+            try (FileInputStream InputFile = new FileInputStream(file)) {
+                if (InputFile.available() != 0) {
+                    ObjectInputStream in = new ObjectInputStream(InputFile);
+                    vendingMachine = (VendingMachine) in.readObject();
+                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
