@@ -31,7 +31,7 @@ public class Main {
     }
 
     private static int getInt(String filePath) {
-        Integer index = getIndex(filePath);
+        long index = getIndex(filePath);
         int integer = 0;
         try (BufferedReader bf = new BufferedReader(new FileReader(filePath))) {
             int i = 0;
@@ -55,8 +55,8 @@ public class Main {
         return integer;
     }
 
-    private static Integer getIndex(String filePath) {
-        int index = 0;
+    private static long getIndex(String filePath) {
+        long index = 0;
         try (BufferedReader bf = new BufferedReader(new FileReader(filePath))) {
             int i, k;
             while ((k = (i = bf.read())) >= 48 && k <= 57) {
