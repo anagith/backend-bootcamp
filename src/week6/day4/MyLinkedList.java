@@ -289,13 +289,13 @@ public class MyLinkedList<T> implements MyList<T> {
         return (T) second.value;
     }
 
-    public boolean containsCycle(){
+    public boolean containsCycle() {
         Node first = head;
         Node second = head;
         while (first != null && first.next != null) {
             first = first.next.next;
             second = second.next;
-            if(first==second){
+            if (first == second) {
                 return true;
             }
         }
