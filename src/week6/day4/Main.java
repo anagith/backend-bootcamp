@@ -21,7 +21,7 @@ public class Main {
         MyLinkedList<Integer> integerMyLinkedList = new MyLinkedList<>();
         integerMyLinkedList.add(1);
         integerMyLinkedList.add(2);
-        integerMyLinkedList.add(null);
+       // integerMyLinkedList.add(null);
         integerMyLinkedList.add(4);
         integerMyLinkedList.add(5);
         integerMyLinkedList.add(6);
@@ -43,8 +43,8 @@ public class Main {
         System.out.println(objectNode1.equals(objectNode));*/
 
         integerMyLinkedList.set(2, 56);
-        System.out.println(integerMyLinkedList);
+       // System.out.println(integerMyLinkedList);
 
-
+        //System.out.println(integerMyLinkedList.findMiddleElement());
     }
 }

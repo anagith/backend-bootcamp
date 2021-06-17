@@ -245,13 +245,15 @@ public class MyLinkedList<T> implements MyList<T> {
         return false;
     }
 
-    public void set(int index, T element) {
+    public T set(int index, T element) {
         checkIndex(index);
         Node<T> temp = head;
+        T old = get(index);
         for (int i = 0; i < index; i++) {
             temp = temp.next;
         }
         temp.value = element;
+        return old;
     }
 
     private void checkIndex(int index) {
@@ -275,5 +277,28 @@ public class MyLinkedList<T> implements MyList<T> {
         }
         result.append("]");
         return result.toString();
+    }
+
+    public T findMiddleElement() {
+        Node first = head;
+        Node second = head;
+        while (first != null && first.next != null) {
+            first = first.next.next;
+            second = second.next;
+        }
+        return (T) second.value;
+    }
+
+    public boolean containsCycle(){
+        Node first = head;
+        Node second = head;
+        while (first != null && first.next != null) {
+            first = first.next.next;
+            second = second.next;
+            if(first==second){
+                return true;
+            }
+        }
+        return false;
     }
 }

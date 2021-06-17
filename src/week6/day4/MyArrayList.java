@@ -16,6 +16,12 @@ public class MyArrayList<T> {
         init(capacity);
     }
 
+    public MyArrayList(T[] array) {
+        this.array = array;
+        size = array.length;
+        capacity = array.length;
+    }
+
     private void init(int capacity) {
         if (capacity < 0) {
             throw new IllegalArgumentException("Illegal capacity");
@@ -122,6 +128,14 @@ public class MyArrayList<T> {
         }
     }
 
+    public void set(int index, T element) {
+        if (index > size) {
+            add(element);
+        } else {
+            array[index] = element;
+        }
+    }
+
     public boolean compare(MyArrayList<T> other) {
         if (other.getSize() != this.getSize()) {
             return false;
@@ -187,10 +201,9 @@ public class MyArrayList<T> {
     }
 
     public void trimToSize() {
-        int difference=capacity-size;
-        for (int i=0;i<difference;i++)
-        {
-            remove(size-1);
+        int difference = capacity - size;
+        for (int i = 0; i < difference; i++) {
+            remove(size - 1);
         }
     }
 
