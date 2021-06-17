@@ -34,7 +34,7 @@ public class Controller {
                 } catch (FileNotFoundException e) {
                     LOGGER.log(Level.WARNING, "FILE NOT FOUND");
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.log(Level.WARNING, "IO EXCEPTION");
                 }
                 Controller.start();
 
@@ -48,7 +48,7 @@ public class Controller {
     private static VendingMachine getVendingMachine(VendingMachine vendingMachine, File file) {
         if (!file.exists()) {
             try {
-                file.createNewFile();
+                boolean newFile = file.createNewFile();
                 vendingMachine = new VendingMachine();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -60,11 +60,11 @@ public class Controller {
                     vendingMachine = (VendingMachine) in.readObject();
                 }
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.WARNING, "FILE NOT FOUND");
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.WARNING, "IO EXCEPTION");
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.WARNING, "CLASS NOT FOUND");
             }
         }
         return vendingMachine;
