@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class Problems {
     public static void main(String[] args) {
         Product product1 = new Product(1L, "abc", "Book", 15.12);
-        Product product2 = new Product(2L, "abbc", "Book", 1223.12);
+        Product product2 = new Product(2L, "abbc", "Book", 15.12);
         Product product3 = new Product(3L, "ab", "Toy", 122.12);
         Product product4 = new Product(4L, "ac", "Baby", 121.12);
         List<Product> products = Arrays.asList(product1, product2, product3, product4);
@@ -26,7 +26,7 @@ public class Problems {
 
         //System.out.println(getBooks(products));
         //System.out.println(getToysAndApplyDiscount(products));
-        //System.out.println(getCheapestProduct(products));
+        System.out.println(getCheapestProducts(products));
         //System.out.println(getThreeRecentOrders(orders));
         //System.out.println(getProducts(orders,LocalDate.of(2021,3,15)));
         //System.out.println(averagePayment(orders, LocalDate.of(2021, 3, 14)));
@@ -54,8 +54,14 @@ public class Problems {
                 .collect(Collectors.toList());
     }
 
-    public static Product getCheapestProduct(List<Product> products) {
-        return products.stream().min(new PriceComparator()).orElse(null);
+    public static List<Product> getCheapestProducts(List<Product> products) {
+        List<Product> books = products.stream()
+                .filter(product -> product.getCategory()
+                        .equals("Book")).collect(Collectors.toList());
+        Product product = books.stream().min(new PriceComparator()).orElse(null);
+        Map<Boolean, List<Product>> collect = books.stream()
+                .collect(Collectors.groupingBy(book1 -> book1.getPrice().equals(product.getPrice())));
+        return collect.get(true);
     }
 
     public static List<Order> getThreeRecentOrders(List<Order> orders) {
