@@ -1,4 +1,4 @@
-package week10.day1.pdf;
+package week10.day1.sum;
 
 public class MyThread extends java.lang.Thread {
     @Override
