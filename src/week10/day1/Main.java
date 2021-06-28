@@ -1,13 +1,14 @@
 package week10.day1;
 
-public class Sum {
+public class Main {
     public static void main(String[] args) {
+        MyThread myThread1 = new MyThread();
+        MyThread myThread2 = new MyThread();
         long start = System.nanoTime();
-        long sum = 0;
-        for (int i = 0; i < 10000000; i++) {
-            sum += i;
-        }
+        myThread1.start();
+        myThread2.start();
         long end = System.nanoTime();
         System.out.println(end - start);
     }
+
 }
