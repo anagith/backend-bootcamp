@@ -1,4 +1,4 @@
-package week10.day1;
+package week10.day1.pdf;
 
 public class Main {
     public static void main(String[] args) {
