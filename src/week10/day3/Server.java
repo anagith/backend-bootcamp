@@ -1,4 +1,4 @@
-package week10.day4;
+package week10.day3;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
