@@ -38,7 +38,7 @@ public class Server {
         return false;
     }
 
-    public static void changeBoard(int num) {
+    public static void writeOnBoard(int num) {
         board[num] = currentPlayer.getType();
     }
 

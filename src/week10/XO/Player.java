@@ -52,7 +52,7 @@ public class Player implements Runnable {
                 } else if (isNumeric(selection) && Integer.parseInt(selection) < 9
                         && Integer.parseInt(selection) >= 0
                         && board[Integer.parseInt(selection)] == null) {
-                    changeBoard(Integer.parseInt(selection));
+                    writeOnBoard(Integer.parseInt(selection));
                     out.println(printBoard());
                     if (hasWon()) {
                         endGame();
