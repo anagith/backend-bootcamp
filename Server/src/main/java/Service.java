@@ -59,7 +59,7 @@ public class Service {
     }
 
     private static Person read(Person person) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Green@00me");
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "user", "password");
         PreparedStatement st = connection.prepareStatement("select * from persons where id=?");
         st.setInt(1, person.getId());
         ResultSet resultSet = st.executeQuery();
@@ -74,7 +74,7 @@ public class Service {
     }
 
     private static void delete(Person person) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Green@00me");
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "user", "password");
         PreparedStatement st = connection.prepareStatement("delete from persons where id=?");
         st.setInt(1, person.getId());
         st.executeUpdate();
@@ -82,7 +82,7 @@ public class Service {
     }
 
     private static void update(Person person) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Green@00me");
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "user", "password");
         PreparedStatement st = connection.prepareStatement("update persons set name=?,surname=?,gender=?,isAdult=?" +
                 "where id=?");
         st.setString(1, person.getName());
