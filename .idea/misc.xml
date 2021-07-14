@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/week12/day2/Server/pom.xml" />
+        <option value="$PROJECT_DIR$/week12/day2/Client/pom.xml" />
+        <option value="$PROJECT_DIR$/week12/day3/Client/pom.xml" />
+        <option value="$PROJECT_DIR$/week12/day3/Server/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" default="true" project-jdk-name="openjdk-15" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
