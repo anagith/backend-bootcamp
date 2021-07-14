@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/src/week12/day2/Client/Client.iml" filepath="$PROJECT_DIR$/src/week12/day2/Client/Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/bootcamp.iml" filepath="$PROJECT_DIR$/bootcamp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/week12/day2/Server/service.iml" filepath="$PROJECT_DIR$/src/week12/day2/Server/service.iml" />
     </modules>
   </component>
 </project>
