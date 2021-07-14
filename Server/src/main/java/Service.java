@@ -97,6 +97,7 @@ public class Service {
     private static void create(Person person) throws SQLException {
         logger.log(Level.INFO, "Creating a person");
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "user", "password");
+
         PreparedStatement st = connection.prepareStatement("insert into persons(name,surname,gender,isadult) values(?,?,?,?)");
         st.setString(1, person.getName());
         st.setString(2, person.getSurname());
