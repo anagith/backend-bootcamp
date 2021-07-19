@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/week12/day2/Client/Client.iml" filepath="$PROJECT_DIR$/week12/day2/Client/Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/week12/day3/Client/Client (1).iml" filepath="$PROJECT_DIR$/week12/day3/Client/Client (1).iml" />
       <module fileurl="file://$PROJECT_DIR$/week12/day3/Server/Server.iml" filepath="$PROJECT_DIR$/week12/day3/Server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/week12/day5/animal/animal.iml" filepath="$PROJECT_DIR$/week12/day5/animal/animal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/week12/day4/books/books.iml" filepath="$PROJECT_DIR$/week12/day4/books/books.iml" />
       <module fileurl="file://$PROJECT_DIR$/bootcamp.iml" filepath="$PROJECT_DIR$/bootcamp.iml" />
       <module fileurl="file://$PROJECT_DIR$/week12/day2/Server/service.iml" filepath="$PROJECT_DIR$/week12/day2/Server/service.iml" />
     </modules>

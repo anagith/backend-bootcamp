@@ -1,43 +1,33 @@
 package service;
 
+import dao.Dao;
 import entity.Animal;
 import entity.Human;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+
+import java.util.Scanner;
 
 public class AnimalService {
-    private static SessionFactory sessionFactory = new Configuration()
-            .configure("hibernate.cfg.xml")
-            .addAnnotatedClass(Animal.class)
-            .addAnnotatedClass(Human.class)
-            .buildSessionFactory();
+    private Dao dao;
 
-    public static void create(Animal animal) {
-        sessionFactory.getCurrentSession().beginTransaction();
-        sessionFactory.getCurrentSession().save(animal);
-        sessionFactory.getCurrentSession().getTransaction().commit();
+    public void create(Animal animal) {
+        dao.create(animal);
     }
 
-    public static Animal getAnimalById(long id) {
-        sessionFactory.getCurrentSession().beginTransaction();
-        Session currentSession = sessionFactory.getCurrentSession();
-        Animal animal = currentSession.find(Animal.class, id);
-        currentSession.getTransaction().commit();
-        return animal;
+    public Animal getAnimalById(long id) {
+        return dao.getAnimal(id);
     }
 
-    public static void update(Animal animal) {
-        sessionFactory.getCurrentSession().beginTransaction();
-        Session currentSession = sessionFactory.getCurrentSession();
-        currentSession.update(animal);
-        currentSession.getTransaction().commit();
+    public void update(Animal animal) {
+        dao.updateAnimal(animal);
     }
 
-    public static void delete(Animal animal) {
-        sessionFactory.getCurrentSession().beginTransaction();
-        Session currentSession = sessionFactory.getCurrentSession();
-        currentSession.delete(animal);
-        currentSession.getTransaction().commit();
+    public void delete(Animal animal) {
+        dao.deleteAnimal(animal);
     }
+
+    public void setAnimalDao(Dao dao) {
+        this.dao = dao;
+    }
+
+
 }

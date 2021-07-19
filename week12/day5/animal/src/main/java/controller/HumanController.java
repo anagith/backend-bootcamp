@@ -2,6 +2,7 @@ package controller;
 
 import entity.Animal;
 import entity.Human;
+import facade.Facade;
 import service.AnimalService;
 import service.HumanService;
 
@@ -9,7 +10,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HumanController {
-    public static void start() {
+
+    private Facade facade;
+
+    public void start() {
         while (true) {
             System.out.println("""
                     Press 1:CREATE
@@ -34,19 +38,19 @@ public class HumanController {
         }
     }
 
-    private static void delete() {
+    private void delete() {
         System.out.println("Please enter id");
         Scanner scanner = new Scanner(System.in);
         long id = scanner.nextLong();
-        Human humanById = HumanService.getHumanById(id);
-        HumanService.delete(humanById);
+        Human humanById = facade.getHuman(id);
+        facade.deleteHuman(humanById);
     }
 
-    private static void update() {
+    private void update() {
         System.out.println("Please enter id");
         Scanner scanner = new Scanner(System.in);
         long id = scanner.nextLong();
-        Human human = HumanService.getHumanById(id);
+        Human human = facade.getHuman(id);
         System.out.println("""
                 Press 1:if you want to change name
                 Press 2:if you want to change surname
@@ -65,7 +69,7 @@ public class HumanController {
         }
     }
 
-    private static void updateAnimalList(Human human) {
+    private void updateAnimalList(Human human) {
         System.out.println("Please enter count of animals");
         Scanner scanner = new Scanner(System.in);
         ArrayList<Animal> animals = new ArrayList<>();
@@ -73,45 +77,45 @@ public class HumanController {
         for (int i = 0; i < count; i++) {
             System.out.println("Please enter id of animal");
             long animalId = scanner.nextLong();
-            Animal animalById = AnimalService.getAnimalById(animalId);
+            Animal animalById = facade.getAnimal(animalId);
             animalById.setOwner(human);
-            AnimalService.update(animalById);
+            facade.updateAnimal(animalById);
             animals.add(animalById);
         }
         human.setAnimals(animals);
-        HumanService.update(human);
+        facade.updateHuman(human);
     }
 
-    private static void updateAge(Human human) {
+    private void updateAge(Human human) {
         System.out.println("Please enter new age");
         Scanner scanner1 = new Scanner(System.in);
         int newAge = scanner1.nextInt();
         human.setAge(newAge);
-        HumanService.update(human);
+        facade.updateHuman(human);
     }
 
-    private static void updateSurname(Human human) {
+    private void updateSurname(Human human) {
         System.out.println("Please enter new surname");
         Scanner scanner1 = new Scanner(System.in);
         String newSurname = scanner1.nextLine();
         human.setSurname(newSurname);
-        HumanService.update(human);
+        facade.updateHuman(human);
     }
 
-    private static void updateName(Human human) {
+    private void updateName(Human human) {
         System.out.println("Please enter new name");
         Scanner scanner1 = new Scanner(System.in);
         String newName = scanner1.nextLine();
         human.setName(newName);
-        HumanService.update(human);
+        facade.updateHuman(human);
 
     }
 
-    private static void read() {
+    private void read() {
         System.out.println("Please enter id");
         Scanner scanner = new Scanner(System.in);
         long id = scanner.nextLong();
-        Human humanById = HumanService.getHumanById(id);
+        Human humanById = facade.getHuman(id);
         System.out.println(humanById);
         humanById.getAnimals().forEach(animal -> {
                     System.out.println(animal.toStringWithoutOwner());
@@ -119,7 +123,7 @@ public class HumanController {
         );
     }
 
-    private static void create() {
+    private void create() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Please enter name");
@@ -135,11 +139,18 @@ public class HumanController {
         int count = scanner.nextInt();
 
         Human human = new Human(name, surname, age, new ArrayList<Animal>());
-        HumanService.create(human);
+        facade.createHuman(human);
 
         for (int i = 0; i < count; i++) {
-            AnimalController.create(human);
+            facade.createAnimalAndHuman(human);
         }
-        HumanService.update(human);
+        facade.updateHuman(human);
+    }
+
+
+
+
+    public void setFacade(Facade facade) {
+        this.facade = facade;
     }
 }
