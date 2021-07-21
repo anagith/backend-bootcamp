@@ -3,8 +3,6 @@ package controller;
 import entity.Animal;
 import entity.Human;
 import facade.Facade;
-import service.AnimalService;
-import service.HumanService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -147,10 +145,7 @@ public class HumanController {
         facade.updateHuman(human);
     }
 
-
-
-
-    public void setFacade(Facade facade) {
+    public HumanController(Facade facade) {
         this.facade = facade;
     }
 }
